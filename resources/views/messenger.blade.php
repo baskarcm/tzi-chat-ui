@@ -12,7 +12,7 @@
                              src="{{messenger()->getProvider()->getProviderAvatarRoute()}}" />
                     </div>
                     <span class="d-none d-md-inline h4 font-weight-bold">Messenger</span>
-                    <div class="dropdown">
+                    {{-- <div class="dropdown">
                         <button data-tooltip="tooltip" title="Messenger Options" data-placement="right" class="btn btn-lg text-secondary btn-light pt-1 pb-0 px-2 dropdown-toggle" data-toggle="dropdown"><i class="fas fa-cogs fa-2x"></i></button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" onclick="ThreadManager.load().search(); return false;" href="#"><i class="fas fa-search"></i> Search Profiles</a>
@@ -20,7 +20,7 @@
                             <a class="dropdown-item" onclick="ThreadManager.load().contacts(); return false;" href="#"><i class="fas fa-user-friends"></i> Friends</a>
                             <a class="dropdown-item" onclick="MessengerSettings.show(); return false;" href="#"><i class="fas fa-cog"></i> Settings</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div data-simplebar id="message_sidebar_content" class="card-body bg-transparent px-0 py-0">
                     <div class="col-12 px-2 mx-0 py-0">
