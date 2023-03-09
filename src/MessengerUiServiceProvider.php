@@ -1,11 +1,11 @@
 <?php
 
-namespace baskarcm\TziChatUi;
+namespace Baskarcm\TziChatUi;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use baskarcm\TziChatUi\Commands\PublishCommand;
+use Baskarcm\TziChatUi\Commands\PublishCommand;
 
 class MessengerUiServiceProvider extends ServiceProvider
 {
