@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use RTippin\MessengerUi\Http\Controllers\ViewPortalController;
+use baskarcm\TziChatUi\Http\Controllers\ViewPortalController;
 
 /*
 |--------------------------------------------------------------------------

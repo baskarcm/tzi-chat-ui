@@ -5,7 +5,7 @@ namespace baskarcm\TziChatUi;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use RTippin\MessengerUi\Commands\PublishCommand;
+use baskarcm\TziChatUi\Commands\PublishCommand;
 
 class MessengerUiServiceProvider extends ServiceProvider
 {
