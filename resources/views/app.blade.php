@@ -78,33 +78,28 @@
         .message.info.d-flex.justify-content-end:before{
             float: right;
             left: 99.2%;
-            @if($sender_msg_bg_color!=0)
-            border-left: 13px solid {{$sender_msg_bg_color}};
-            @else
-            border-left: 13px solid #494d50;
-            @endif
             border-right: none !important;
+            border-left: 13px solid {{$sender_msg_bg_color==0?"#494d50":$sender_msg_bg_color}};
         }
-        @if($sender_msg_color!=0)
         .message.info.d-flex.justify-content-end .message-body, .message.info.d-flex.justify-content-end .message-info>h4, .message.info.d-flex.justify-content-end .message-info>h5, .message.info.d-flex.justify-content-end  .message-info>h5>i{
-            background-color: {{$sender_msg_bg_color}} !important;
-            color: {{$sender_msg_color}} !important;
+            background-color: {{$sender_msg_bg_color==0?'#d5e1f3':$sender_msg_bg_color}} !important;
         }
-        @endif
+        .message.info.d-flex.justify-content-end .message-body, .message.info.d-flex.justify-content-end .message-info>h4, .message.info.d-flex.justify-content-end .message-info>h5, .message.info.d-flex.justify-content-end  .message-info>h5>i{
+            color: {{$sender_msg_color==0?'#263238':$sender_msg_color}} !important;
+        }
         
-        @if($receiver_msg_bg_color!=0)
         .message.info:before{
             left: 46px;
-            border-right: 13px solid {{$receiver_msg_bg_color}};
+            border-right: 13px solid {{$receiver_msg_bg_color==0?'#d5e1f3':$receiver_msg_bg_color}};
         }
-        @endif
         .message.info .message-body, .message.info .message-info>h4, .message.info .message-info>h5, .message.info  .message-info>h5>i{
-            @if($receiver_msg_bg_color!=0)
-            background-color: {{$receiver_msg_bg_color}} !important;
-            @endif
-            @if($receiver_msg_color!=0)
-            color: {{$receiver_msg_color}} !important;
-            @endif
+            background-color: {{$receiver_msg_bg_color==0?'#d5e1f3':$receiver_msg_bg_color}} !important;
+        }
+        .message.info .message-body, .message.info .message-info>h4, .message.info .message-info>h5, .message.info  .message-info>h5>i{
+            color: {{$receiver_msg_color==0?'#263238':$receiver_msg_color}} !important;
+        }
+        .message{
+            
         }
     </style>
     @stack('css')
