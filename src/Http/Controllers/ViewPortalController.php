@@ -1,6 +1,6 @@
 <?php
 
-namespace baskarcm\TziChatUi\Http\Controllers;
+namespace Baskarcm\TziChatUi\Http\Controllers;
 
 use Illuminate\View\View;
 

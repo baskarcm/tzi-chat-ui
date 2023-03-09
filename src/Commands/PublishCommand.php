@@ -1,6 +1,6 @@
 <?php
 
-namespace baskarcm\TziChatUi\Commands;
+namespace Baskarcm\TziChatUi\Commands;
 
 use Illuminate\Console\Command;
 
