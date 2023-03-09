@@ -546,23 +546,21 @@ window.ThreadTemplates = (function () {
                 '</div><div class="clearfix"></div></div>'
         },
         message : function(data){
-            return '<div id="message_'+data.id+'" class="message info"><a '+(data.owner.route ? '' : 'onclick="return false;"')+' ' +
-                'href="'+(data.owner.route ? data.owner.route : '#')+'" target="_blank"><img title="'+Messenger.format().escapeHtml(data.owner.name)+'" class="rounded-circle message-avatar" src="'+data.owner.avatar.sm+'"></a>' +
-                '<div class="message-body"><div class="message-body-inner"><div class="message-info">' +
-                '<h4>'+data.owner.name+(data.from_bot ? '<span class="ml-1 badge badge-warning">BOT</span>' : '')+'</h4>' +
-                '<h5> <i class="far fa-clock"></i><time title="'+Messenger.format().makeHumanTime(data.created_at)+'" class="timeago" datetime="'+data.created_at+'">'+Messenger.format().makeTimeAgo(data.created_at)+'</time></h5></div><hr><div class="message-text">' +
-                templates.message_body(data, false) +
-                '</div></div></div>' +templates.message_options(data, false)+
-                '<div class="reactions">'+templates.message_reactions(data, false, false)+
-                '</div><div class="clearfix"></div></div>'
+            var className = '';
+            var avatorImg = '';
+            if(data.owner_id==$('meta[name="auth-check"]').attr('content')){
+                className = 'd-flex justify-content-end';
+            }else{
+                var avatorImg = '<a ' + (data.owner.route ? '' : 'onclick="return false;"') + ' ' + 'href="' + (data.owner.route ? data.owner.route : '#') + '" target="_blank"><img title="' + Messenger.format().escapeHtml(data.owner.name) + '" class="rounded-circle message-avatar" src="' + data.owner.avatar.sm + '"></a>';
+            }
+            return '<div id="message_' + data.id + '" class="message info '+className+'">'+avatorImg + '<div class="message-body"><div class="message-body-inner"><div class="message-info">' + '<h4>' + data.owner.name + (data.from_bot ? '<span class="ml-1 badge badge-warning">BOT</span>' : '') + '</h4>' + '<h5> <i class="far fa-clock"></i><time title="' + Messenger.format().makeHumanTime(data.created_at) + '" class="timeago" datetime="' + data.created_at + '">' + Messenger.format().makeTimeAgo(data.created_at) + '</time></h5></div><hr><div class="message-text">' + (data.body).split('\n').join('<br>') + '</div></div></div>' + templates.message_options(data, false) + '<div class="reactions">' + templates.message_reactions(data, false, false) + '</div><div class="clearfix"></div></div>'
         },
         message_grouped : function(data){
-            return '<div id="message_'+data.id+'" class="message grouped-message info"><div class="message-body"><div class="message-body-inner">' +
-                '<div title="'+Messenger.format().escapeHtml(data.owner.name)+' on '+Messenger.format().makeHumanTime(data.created_at)+'" class="message-text pt-2">' +
-                templates.message_body(data, false) +
-                '</div></div></div> '+templates.message_options(data, true)+
-                '<div class="reactions">'+templates.message_reactions(data, false, true)+
-                '</div><div class="clearfix"></div></div>'
+            var className = '';
+            if(data.owner_id==$('meta[name="auth-check"]').attr('content')){
+                className = 'd-flex justify-content-end';
+            }
+            return '<div id="message_' + data.id + '" class="message grouped-message info '+className+'"><div class="message-body"><div class="message-body-inner">' + '<div title="' + Messenger.format().escapeHtml(data.owner.name) + ' on ' + Messenger.format().makeHumanTime(data.created_at) + '" class="message-text pt-2">' + (data.body).split('\n').join('<br>') + '</div></div></div> ' + templates.message_options(data, true) + '<div class="reactions">' + templates.message_reactions(data, false, true) + '</div><div class="clearfix"></div></div>'
         },
         message_reply : function(data){
             return '<div id="message_'+data.id+'" class="message info"><a '+(data.owner.route ? '' : 'onclick="return false;"')+' ' +

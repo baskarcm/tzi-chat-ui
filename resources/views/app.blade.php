@@ -19,6 +19,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="title" content="@yield('title', config('messenger-ui.site_name'))">
     <title>@yield('title', config('messenger-ui.site_name'))</title>
+    <meta name="auth-check" content="{{ (Auth::check()) ? Auth::id() : '' }}">
+    <meta name="audio" content="{{ (Auth::check()) ? Auth::user()->audio : '' }}">
+    <meta name="upload" content="{{ (Auth::check()) ? Auth::user()->upload : '' }}">
     @auth
         <link id="main_css" href="{{ asset(mix(messenger()->getProviderMessenger()->dark_mode ? 'dark.css' : 'app.css', 'vendor/messenger')) }}" rel="stylesheet">
     @else
@@ -26,6 +29,84 @@
     @endauth
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css">
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    @php
+    $sender_msg_bg_color = Auth::user()->sender_msg_bg_color?Auth::user()->sender_msg_bg_color:0;
+    $sender_msg_color = Auth::user()->sender_msg_color?Auth::user()->sender_msg_color:0;
+    $receiver_msg_bg_color = Auth::user()->receiver_msg_bg_color?Auth::user()->receiver_msg_bg_color:0;
+    $receiver_msg_color = Auth::user()->receiver_msg_color?Auth::user()->receiver_msg_color:0;
+    @endphp
+    <style>
+        #message_text_input {
+            height: 50px;
+            resize: none;
+        }
+        .inline_send_msg_btn_2 {
+            bottom: 8px;
+            right:  25px;
+        }
+        textarea#message_text_input::-webkit-scrollbar, textarea#message_text_input::-webkit-scrollbar-track {
+            background-color: #444!important;
+        }
+        textarea#message_text_input::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+            background-color: #eee;
+        }
+        textarea#message_text_input::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+        }
+        .bg-light {
+            /* min-height: 73px; */
+        }
+        #thread_header_area i.fas.fa-check-circle.fa-2x ,#thread_header_area i.fas.fa-times-circle.fa-2x{
+            font-size: 1em;
+        }
+        #thread_header_area .dropdown.float-right {
+            top: 10px;
+        }
+        .card.messages-panel .chat-body {
+            height: calc(100vh - 155px);
+        }
+        .message {
+            width: 98%;
+        }
+        .message .message-info {
+            padding-right: 1px;
+        }
+        .message.info.d-flex.justify-content-end:before{
+            float: right;
+            left: 99.2%;
+            @if($sender_msg_bg_color!=0)
+            border-left: 13px solid {{$sender_msg_bg_color}};
+            @else
+            border-left: 13px solid #494d50;
+            @endif
+            border-right: none !important;
+        }
+        @if($sender_msg_color!=0)
+        .message.info.d-flex.justify-content-end .message-body, .message.info.d-flex.justify-content-end .message-info>h4, .message.info.d-flex.justify-content-end .message-info>h5, .message.info.d-flex.justify-content-end  .message-info>h5>i{
+            background-color: {{$sender_msg_bg_color}} !important;
+            color: {{$sender_msg_color}} !important;
+        }
+        @endif
+        
+        @if($receiver_msg_bg_color!=0)
+        .message.info:before{
+            left: 46px;
+            border-right: 13px solid {{$receiver_msg_bg_color}};
+        }
+        @endif
+        .message.info .message-body, .message.info .message-info>h4, .message.info .message-info>h5, .message.info  .message-info>h5>i{
+            @if($receiver_msg_bg_color!=0)
+            background-color: {{$receiver_msg_bg_color}} !important;
+            @endif
+            @if($receiver_msg_color!=0)
+            color: {{$receiver_msg_color}} !important;
+            @endif
+        }
+    </style>
     @stack('css')
 </head>
 <body>
