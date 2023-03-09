@@ -1,20 +1,24 @@
 {
     "name": "baskarcm/tzi-chat-ui",
     "description": "Laravel messenger suite UI.",
-    "license": "mit",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Baskar",
+            "email": "baskarmca.php@gmail.com"
+        }
+    ],
+    "keywords": [
+        "Laravel",
+        "Messenger"
+    ],
+    "require": {
+        "baskarcm/tzi-chat-ui": "^1.1"
+    },
     "autoload": {
         "psr-4": {
             "Baskarcm\\TziChatUi\\": "src/"
         }
-    },
-    "authors": [
-        {
-            "name": "baskar",
-            "email": "baskarmca.php@gmail.com"
-        }
-    ],
-    "require": {
-        "baskarcm/tzi-chat-ui": "^1.1.1"
     },
     "extra": {
         "laravel": {
@@ -22,5 +26,10 @@
                 "Baskarcm\\TziChatUi\\MessengerUiServiceProvider"
             ]
         }
-    }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
