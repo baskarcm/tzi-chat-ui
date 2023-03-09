@@ -13,5 +13,14 @@
             "email": "baskarmca.php@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "baskarcm/tzi-chat-ui": "^1.1.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Baskarcm\\TziChatUi\\MessengerUiServiceProvider"
+            ]
+        }
+    }
 }
