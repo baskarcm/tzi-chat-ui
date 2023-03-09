@@ -1,9 +1,6 @@
 {
     "name": "baskarcm/tzi-chat-ui",
     "description": "Laravel messenger suite UI.",
-    "require": {
-        "baskarcm/tzi-chat-ui": "1.0.0"
-    },
     "license": "mit",
     "autoload": {
         "psr-4": {
@@ -15,5 +12,6 @@
             "name": "baskar",
             "email": "baskarmca.php@gmail.com"
         }
-    ]
+    ],
+    "require": {}
 }
