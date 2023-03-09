@@ -739,32 +739,31 @@ window.ThreadTemplates = (function () {
             return '';
         },
         thread_private_header : function(data){
-            let base = '<div class="dropdown-divider"></div>' +
-                (data.locked
-                        ? ''
-                        : (data.options.muted ? '<a onclick="ThreadManager.mute().unmute(); return false;" class="dropdown-item" href="#"><i class="fas fa-volume-up"></i> Unmute</a>'
-                            : '<a onclick="ThreadManager.mute().mute(); return false;" class="dropdown-item" href="#"><i class="fas fa-volume-mute"></i> Mute</a>')
-                ) +
-                '<a onclick="ThreadManager.archive().Thread(); return false;" class="dropdown-item" href="#"><i class="fas fa-trash"></i> Delete Conversation</a>' +
-                '</div>';
+            var base = '<div class="dropdown-divider"></div>' + (data.locked ? '' : data.options.muted ? '<a onclick="ThreadManager.mute().unmute(); return false;" class="dropdown-item" href="#"><i class="fas fa-volume-up"></i> Unmute</a>' : '<a onclick="ThreadManager.mute().mute(); return false;" class="dropdown-item" href="#"><i class="fas fa-volume-mute"></i> Mute</a>') + '<a onclick="ThreadManager.archive().Thread(); return false;" class="dropdown-item" href="#"><i class="fas fa-trash"></i> Delete Conversation</a>' + '</div>';
+            var close ='<button onclick="ThreadManager.load().closeOpened()" title="Close" class="btn btn-lg text-danger btn-light pt-1 pb-0 px-2 mr-1" type="button"><i class="fas fa-times fa-2x"></i></button>';
+            close = '';
+            var knock = (!data.locked && data.options.knock ?
+                '<button onclick="ThreadManager.calls().sendKnock()" id="knok_btn" data-toggle="tooltip" title="Knock at '+Messenger.format().escapeHtml(data.name)+'" data-placement="bottom" class="btn btn-lg text-secondary btn-light pt-1 pb-0 px-2 mr-1" type="button"><i class="fas fa-hand-rock fa-2x"></i></button>'
+                : '');
+            knock = '';
+            var settings =
+            '<button class="btn btn-lg text-secondary btn-light dropdown-toggle pt-1 pb-0 px-2" type="button" data-toggle="dropdown"><i class="fas fa-cog fa-2x"></i></button>\n';
+            settings = '';
 
             return '<div id="thread_header_area"><div class="dropdown float-right">\n' +
-                templates.thread_socket_error()+
-                templates.private_pending_state(data)+
-                '    <span id="thread_option_call">'+(!data.options.call && !data.has_call ? '' : templates.thread_call_state(data))+'</span>\n' +
-                (!data.locked && data.options.knock ?
-                    '<button onclick="ThreadManager.calls().sendKnock()" id="knok_btn" data-toggle="tooltip" title="Knock at '+Messenger.format().escapeHtml(data.name)+'" data-placement="bottom" class="btn btn-lg text-secondary btn-light pt-1 pb-0 px-2 mr-1" type="button"><i class="fas fa-hand-rock fa-2x"></i></button>'
-                    : '')+
-                '<button class="btn btn-lg text-secondary btn-light dropdown-toggle pt-1 pb-0 px-2" type="button" data-toggle="dropdown"><i class="fas fa-cog fa-2x"></i></button>\n' +
-                '<div class="dropdown-menu dropdown-menu-right">\n' +
-                '    <div '+(data.resources.recipient.route ? 'onclick="window.open(\''+data.resources.recipient.route+'\')"' : '')+' class="pointer_area dropdown-header py-0 h6 text-dark"><img alt="Profile Image" class="rounded-circle small_img" src="'+data.resources.recipient.avatar.sm+'"/> '+data.name+'</div>\n' +
-                templates.thread_resource_dropdown() +
-                '    <div id="network_for_'+data.resources.recipient.provider_id+'" class="profile_network_options">'+templates.thread_network_opt(data.resources.recipient)+'</div>'+
-                (data.pending && data.options.awaiting_my_approval
-                    ? '</div>'
-                    : base ) +
-                '<button onclick="ThreadManager.load().closeOpened()" title="Close" class="btn btn-lg text-danger btn-light pt-1 pb-0 px-2 mr-1" type="button"><i class="fas fa-times fa-2x"></i></button>'+
-                '</div><div id="main_bobble_'+data.resources.recipient.provider_id+'">'+templates.thread_private_header_bobble(data.resources.recipient)+'</div></div>'
+            templates.thread_socket_error()+
+            templates.private_pending_state(data)+
+            '    <span id="thread_option_call">'+(!data.options.call && !data.has_call ? '' : templates.thread_call_state(data))+'</span>\n' +knock
+            +settings +
+            '<div class="dropdown-menu dropdown-menu-right">\n' +
+            '    <div '+(data.resources.recipient.route ? 'onclick="window.open(\''+data.resources.recipient.route+'\')"' : '')+' class="pointer_area dropdown-header py-0 h6 text-dark"><img alt="Profile Image" class="rounded-circle small_img" src="'+data.resources.recipient.avatar.sm+'"/> '+data.name+'</div>\n' +
+            templates.thread_resource_dropdown() +
+            '    <div id="network_for_'+data.resources.recipient.provider_id+'" class="profile_network_options">'+templates.thread_network_opt(data.resources.recipient)+'</div>'+
+            (data.pending && data.options.awaiting_my_approval
+                ? '</div>'
+                : base ) +close
+            +
+            '</div><div id="main_bobble_'+data.resources.recipient.provider_id+'">'+templates.thread_private_header_bobble(data.resources.recipient)+'</div></div>';
         },
         thread_new_header : function(party){
             return '<div id="thread_header_area"><div class="dropdown float-right">\n' +
