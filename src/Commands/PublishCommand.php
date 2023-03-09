@@ -11,7 +11,7 @@ class PublishCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'tzichat:ui:publish {--force : Overwrites all resources}';
+    protected $signature = 'tzi-chat:ui:publish {--force : Overwrites all resources}';
 
     /**
      * The console command description.
