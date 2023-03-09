@@ -1,6 +1,6 @@
 <?php
 
-namespace RTippin\MessengerUi\Commands;
+namespace baskarcm\TziChatUi\Commands;
 
 use Illuminate\Console\Command;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace RTippin\MessengerUi;
+namespace baskarcm\TziChatUi;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Routing\Router;

@@ -1,6 +1,6 @@
 <?php
 
-namespace RTippin\MessengerUi\Http\Controllers;
+namespace baskarcm\TziChatUi\Http\Controllers;
 
 use Illuminate\View\View;
 
