@@ -75,11 +75,11 @@ window.ThreadTemplates = (function () {
         empty_base : function(){
             return '<div class="container h-100">\n' +
                 '    <div class="row align-items-end h-100">\n' +
-                '        <div class="col-12 text-center mb-5">\n' +
-                '            <button data-toggle="tooltip" title="Search Profiles" data-placement="top" onclick="ThreadManager.load().search()" class="btn btn-outline-dark btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-search fa-3x"></i></button>\n' +
-                '            <button data-toggle="tooltip" title="Create Group" data-placement="top" onclick="ThreadManager.load().createGroup()" class="btn btn-outline-success btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-edit fa-3x"></i></button>\n' +
-                '            <button data-toggle="tooltip" title="Friends" data-placement="top" onclick="ThreadManager.load().contacts()" class="btn btn-outline-info btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-user-friends fa-3x"></i></button>\n' +
-                '            <button data-toggle="tooltip" title="Messenger Settings" data-placement="top" onclick="MessengerSettings.show()" class="btn btn-outline-primary btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-cog fa-3x"></i></button>\n' +
+                '        <div class="col-12 text-center mb-5 empty_base">\n' +
+                // '            <button data-toggle="tooltip" title="Search Profiles" data-placement="top" onclick="ThreadManager.load().search()" class="btn btn-outline-dark btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-search fa-3x"></i></button>\n' +
+                // '            <button data-toggle="tooltip" title="Create Group" data-placement="top" onclick="ThreadManager.load().createGroup()" class="btn btn-outline-success btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-edit fa-3x"></i></button>\n' +
+                // '            <button data-toggle="tooltip" title="Friends" data-placement="top" onclick="ThreadManager.load().contacts()" class="btn btn-outline-info btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-user-friends fa-3x"></i></button>\n' +
+                // '            <button data-toggle="tooltip" title="Messenger Settings" data-placement="top" onclick="MessengerSettings.show()" class="btn btn-outline-primary btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-cog fa-3x"></i></button>\n' +
                 '        </div>\n' +
                 '    </div>\n' +
                 '</div>'

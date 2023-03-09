@@ -608,7 +608,13 @@
     max-width: 425px;
     width : 35vw;
 }
-
+.empty_base{
+    background-image: url(https://i.stack.imgur.com/ggbJ0.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+}
 @media(max-width : 767px){
     #message_sidebar_container{
         min-width: 150px;
