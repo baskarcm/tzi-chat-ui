@@ -12,9 +12,7 @@
         "Laravel",
         "Messenger"
     ],
-    "require": {
-        "baskarcm/tzi-chat-ui": "^1.1"
-    },
+    "require": {},
     "autoload": {
         "psr-4": {
             "Baskarcm\\TziChatUi\\": "src/"
