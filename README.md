@@ -13,7 +13,7 @@ Laravel messenger suite UI.
 
 ---
 
-## Ready-made UI and web routes for use with [baskarcm/messenger-ui][link-messenger]
+## Ready-made UI and web routes for use with [baskarcm/tzi-chat-ui][link-messenger]
 
 ### Notes
 - This package provides web routes and a published UI to consume `messenger's` API. No authentication routes/system will be setup for you.
@@ -30,17 +30,17 @@ Laravel messenger suite UI.
 ### Via Composer
 
 ``` bash
-composer require baskarc/laravel-messenger-ui
+composer require baskarcm/tzi-chat-ui
 ```
 
 ### Publish Assets and Config
 - This will publish our JS assets, images, views, and config.
 ```bash
-php artisan messenger:ui:publish
+php artisan tzi:chat:ui:publish
 ```
 - When using composer to update this package, we recommend republishing our JS/CSS assets:
 ```bash
-php artisan vendor:publish --tag=messenger-ui.assets --force
+php artisan vendor:publish --tag=tzi-chat-ui.assets --force
 ```
 
 ---
@@ -160,14 +160,14 @@ MESSENGER_SOCKET_KEY="${PUSHER_APP_KEY}"
 
 
 [link-messenger]: https://github.com/RTippin/messenger
-[link-author]: https://github.com/rtippin
-[ico-version]: https://img.shields.io/packagist/v/rtippin/messenger-ui.svg?style=plastic&cacheSeconds=3600
-[ico-downloads]: https://img.shields.io/packagist/dt/rtippin/messenger-ui.svg?style=plastic&cacheSeconds=3600
+[link-author]: https://github.com/baskarcm
+[ico-version]: https://img.shields.io/packagist/v/baskarcm/tzi-chat-ui.svg?style=plastic&cacheSeconds=3600
+[ico-downloads]: https://img.shields.io/packagist/dt/baskarcm/tzi-chat-ui.svg?style=plastic&cacheSeconds=3600
 [ico-styleci]: https://styleci.io/repos/379743201/shield?style=plastic&cacheSeconds=3600
-[ico-license]: https://img.shields.io/github/license/RTippin/messenger-ui?style=plastic
-[link-packagist]: https://packagist.org/packages/rtippin/messenger-ui
-[link-downloads]: https://packagist.org/packages/rtippin/messenger-ui
-[link-license]: https://packagist.org/packages/rtippin/messenger-ui
+[ico-license]: https://img.shields.io/github/license/baskarcm/tzi-chat-ui?style=plastic
+[link-packagist]: https://packagist.org/packages/baskarcm/tzi-chat-ui
+[link-downloads]: https://packagist.org/packages/baskarcm/tzi-chat-ui
+[link-license]: https://packagist.org/packages/baskarcm/tzi-chat-ui
 [link-styleci]: https://styleci.io/repos/379743201
 [link-laravel-websockets]: https://beyondco.de/docs/laravel-websockets/getting-started/introduction
 [link-laravel-websockets-install]: https://beyondco.de/docs/laravel-websockets/getting-started/installation
