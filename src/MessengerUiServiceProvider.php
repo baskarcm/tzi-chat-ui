@@ -18,7 +18,7 @@ class MessengerUiServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/messenger-ui.php', 'messenger-ui');
+        $this->mergeConfigFrom(__DIR__.'/../config/messenger-ui.php', 'tzi-chat-ui');
 
         $router = $this->app->make(Router::class);
 
@@ -50,15 +50,15 @@ class MessengerUiServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../config/messenger-ui.php' => config_path('messenger-ui.php'),
-        ], 'messenger-ui.config');
+        ], 'tzi-chat-ui.config');
 
         $this->publishes([
             __DIR__.'/../resources/views' => base_path('resources/views/vendor/messenger'),
-        ], 'messenger-ui.views');
+        ], 'tzi-chat-ui.views');
 
         $this->publishes([
             __DIR__.'/../public' => public_path('vendor/messenger'),
-        ], 'messenger-ui.assets');
+        ], 'tzi-chat-ui.assets');
     }
 
     /**
@@ -80,11 +80,11 @@ class MessengerUiServiceProvider extends ServiceProvider
     private function webRouteConfiguration(bool $invite = false): array
     {
         return [
-            'domain' => config('messenger-ui.routing.domain'),
-            'prefix' => trim(config('messenger-ui.routing.prefix'), '/'),
+            'domain' => config('tzi-chat-ui.routing.domain'),
+            'prefix' => trim(config('tzi-chat-ui.routing.prefix'), '/'),
             'middleware' => $invite
-                ? config('messenger-ui.routing.invite_middleware')
-                : config('messenger-ui.routing.middleware'),
+                ? config('tzi-chat-ui.routing.invite_middleware')
+                : config('tzi-chat-ui.routing.middleware'),
         ];
     }
 }

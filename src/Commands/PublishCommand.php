@@ -11,7 +11,7 @@ class PublishCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'messenger:ui:publish {--force : Overwrites all resources}';
+    protected $signature = 'tzi:chat:ui:publish {--force : Overwrites all resources}';
 
     /**
      * The console command description.
@@ -30,17 +30,17 @@ class PublishCommand extends Command
         $this->comment('Publishing Messenger UI Configuration...');
 
         $this->callSilent('vendor:publish', [
-            '--tag' => 'messenger-ui.config',
+            '--tag' => 'tzi-chat-ui.config',
             '--force' => $this->option('force'),
         ]);
 
         $this->callSilent('vendor:publish', [
-            '--tag' => 'messenger-ui.views',
+            '--tag' => 'tzi-chat-ui.views',
             '--force' => $this->option('force'),
         ]);
 
         $this->callSilent('vendor:publish', [
-            '--tag' => 'messenger-ui.assets',
+            '--tag' => 'tzi-chat-ui.assets',
             '--force' => $this->option('force'),
         ]);
 
