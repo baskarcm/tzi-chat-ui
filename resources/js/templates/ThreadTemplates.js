@@ -1321,46 +1321,16 @@ window.ThreadTemplates = (function () {
                 '</form>'
         },
         thread_base : function(data, creating){
-            return '<div class="card messages-panel mt-1">\n' +
-                '    <div class="message-body" id="thread_'+(creating ? '' : data.id)+'">\n' +
-                '        <div class="message-chat">\n' +
-                '            <div id="msg_thread_'+(creating ? '' : data.id)+'" class="chat-body pb-0 mb-0">\n'+
-                '               <div id="messages_container_'+(creating ? '' : data.id)+'">'+(creating ? templates.thread_new_fill(data) : templates.loader())+'</div>\n'+
-                '               <div id="pending_messages" class="w-100"></div>\n' +
-                '               <div id="seen-by_final" class="seen-by-final w-100 bobble-zone"></div>\n' +
-                '               <div id="new_message_alert" class="pointer_area NS">' +
-                                templates.thread_new_message_alert() +
-                '               </div>'+
-                '               <div id="reply_message_alert" class="pointer_area NS"></div>'+
-                '            </div>\n' +
-                '            <div class="chat-footer">\n' +
-                                templates.disabled_overlay_check(data, creating)+
-                '                <div class="card bg-light mb-0 border-0">\n' +
-                '                    <div class="col-12 mt-3 px-0">\n' +
-                '                        <form autocomplete="off" class="form-inline w-100" id="thread_form">\n' +
-                '                            <div class="col-12">\n' +
-                '                                <div class="form-group form-group-xs-nm">\n' +
-                '                                    <input disabled autocomplete="off" spellcheck="true" type="text" title="message" name="message_txt_'+Date.now()+'" id="message_text_input" class="form-control w-100 pr-special-btn"/>\n' +
-                '                                </div>\n' +
-                '                            </div>\n' +
-                '                            <div class="col-12 my-1">\n' +
-                '                                <div class="float-left">\n' +
-                '                                    <button style="font-size: 18px; line-height: 0;" id="file_upload_btn" data-toggle="tooltip" title="Upload File(s)" data-placement="top" class="p-1 btn btn-sm btn-light" onclick="$(\'#doc_file\').trigger(\'click\');" type="button"><i class="fas fa-plus-circle"></i></button>\n' +
-                '                                    <button style="font-size: 18px; line-height: 0;" id="record_audio_message_btn" data-toggle="tooltip" title="Record Audio Message" data-placement="top" class="p-1 mx-1 btn btn-sm btn-light" type="button"><i class="fas fa-microphone"></i></button>\n' +
-                '                                </div>\n' +
-                '                                <div class="float-right">\n' +
-                '                                    <button style="font-size: 18px; line-height: 0;" id="add_emoji_btn" data-toggle="tooltip" title="Add emoji" data-placement="top" class="p-1 btn btn-sm btn-light" type="button"><i class="fas fa-grin"></i></button>\n' +
-                '                                </div>\n' +
-                '                            </div>\n' +
-                '                        </form>\n' +
-                '                    </div>\n' +
-                '                    <input class="NS" multiple type="file" name="doc_file" id="doc_file">\n' +
-                '                    <input class="NS" id="thread_avatar_image_file" type="file" name="group_avatar_image_file" accept="image/*">\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </div>\n' +
-                '</div>'
+            var upload ='';
+            if($('meta[name="upload"]').attr('content')!='' && $('meta[name="upload"]').attr('content')!=0){
+                upload = '<button style="font-size: 18px; line-height: 0;" id="file_upload_btn" data-toggle="tooltip" title="Upload File(s)" data-placement="top" class="p-1 btn btn-sm btn-light" onclick="$(\'#doc_file\').trigger(\'click\');" type="button"><i class="fas fa-plus-circle"></i></button>\n';
+            }
+            var audio ='';
+            if($('meta[name="audio"]').attr('content')!='' && $('meta[name="audio"]').attr('content')!=0){
+                audio = '<button style="font-size: 18px; line-height: 0;" id="record_audio_message_btn" data-toggle="tooltip" title="Record Audio Message" data-placement="top" class="p-1 mx-1 btn btn-sm btn-light" type="button"><i class="fas fa-microphone"></i></button>\n'
+            }
+            
+            return '<div class="card messages-panel mt-1">\n' + '    <div class="message-body" id="thread_' + (creating ? '' : data.id) + '">\n' + '        <div class="message-chat">\n' + '            <div id="msg_thread_' + (creating ? '' : data.id) + '" class="chat-body pb-0 mb-0">\n' + '               <div id="messages_container_' + (creating ? '' : data.id) + '">' + (creating ? templates.thread_new_fill(data) : templates.loader()) + '</div>\n' + '               <div id="pending_messages" class="w-100"></div>\n' + '               <div id="seen-by_final" class="seen-by-final w-100 bobble-zone"></div>\n' + '               <div id="new_message_alert" class="pointer_area NS">' + templates.thread_new_message_alert() + '               </div>' + '               <div id="reply_message_alert" class="pointer_area NS"></div>' + '            </div>\n' + '            <div class="chat-footer">\n' + templates.disabled_overlay_check(data, creating) + '                <div class="card bg-light mb-0 border-0">\n' + '                    <div class="col-12 mt-3 px-0">\n' + '                        <form autocomplete="off" class="form-inline w-100" id="thread_form">\n' + '                            <div class="col-12">\n' + '                                <div class="form-group form-group-xs-nm">\n' + '                                    <textarea rows="2" disabled autocomplete="off" spellcheck="true" type="text" title="message" name="message_txt_' + Date.now() + '" id="message_text_input" class="form-control w-100 pr-special-btn"></textarea>\n' + '                                </div>\n' + '                            </div>\n' + '                            <div class="col-12 my-1">\n' + '                                <div class="float-left">\n' + upload + audio + '                                </div>\n' + '                                <div class="float-right">\n' + '                                    <button style="font-size: 18px; line-height: 0;" id="add_emoji_btn" data-toggle="tooltip" title="Add emoji" data-placement="top" class="p-1 btn btn-sm btn-light" type="button"><i class="fas fa-grin"></i></button>\n' + '                                </div>\n' + '                            </div>\n' + '                        </form>\n' + '                    </div>\n' + '                    <input class="NS" multiple type="file" name="doc_file" id="doc_file">\n' + '                    <input class="NS" id="thread_avatar_image_file" type="file" name="group_avatar_image_file" accept="image/*">\n' + '                </div>\n' + '            </div>\n' + '        </div>\n' + '    </div>\n' + '</div>'
         },
         disabled_overlay_check : function(data, creating){
             if(creating){
