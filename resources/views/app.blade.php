@@ -79,7 +79,7 @@
             float: right;
             left: 99.2%;
             border-right: none !important;
-            border-left: 13px solid {{$sender_msg_bg_color==0?"#494d50":$sender_msg_bg_color}};
+            border-left: 13px solid {{$sender_msg_bg_color==0?"#d5e1f3":$sender_msg_bg_color}};
         }
         .message.info.d-flex.justify-content-end .message-body, .message.info.d-flex.justify-content-end .message-info>h4, .message.info.d-flex.justify-content-end .message-info>h5, .message.info.d-flex.justify-content-end  .message-info>h5>i{
             background-color: {{$sender_msg_bg_color==0?'#d5e1f3':$sender_msg_bg_color}} !important;
@@ -90,7 +90,7 @@
         
         .message.info:before{
             left: 46px;
-            border-right: 13px solid {{$receiver_msg_bg_color==0?'#d5e1f3':$receiver_msg_bg_color}};
+            border-right: 13px solid {{$receiver_msg_bg_color==0?'#d5e1f3':$receiver_msg_bg_color}} !important;
         }
         .message.info .message-body, .message.info .message-info>h4, .message.info .message-info>h5, .message.info  .message-info>h5>i{
             background-color: {{$receiver_msg_bg_color==0?'#d5e1f3':$receiver_msg_bg_color}} !important;
@@ -99,7 +99,7 @@
             color: {{$receiver_msg_color==0?'#263238':$receiver_msg_color}} !important;
         }
         .message{
-            
+
         }
     </style>
     @stack('css')
