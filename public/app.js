@@ -10789,7 +10789,7 @@ window.ThreadTemplates = function () {
           options += '<div onclick="ThreadManager.reply({id : \'' + data.id + '\'})" class="message_hover_opt float-left ml-2 pt-' + (grouped ? '0' : '2') + ' h6 text-secondary pointer_area NS"><i title="Reply" class="fas fa-reply"></i></div>';
           options += '<div class="dropdown">\n' + '<div id="msg_options_' + data.id + '" class="message_hover_opt float-left ml-2 pt-' + (grouped ? '0' : '2') + ' h6 text-secondary pointer_area NS" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i title="Options" class="fas fa-ellipsis-v"></i></div>' + '  <div class="dropdown-menu" aria-labelledby="msg_options_' + data.id + '">\n' + '<a onclick="EmojiPicker.addReaction(\'' + data.id + '\'); return false;" class="dropdown-item" href="#"><i class="fas fa-grin"></i> React</a>' + '<a onclick="ThreadManager.reply({id : \'' + data.id + '\'}); return false;" class="dropdown-item" href="#"><i class="fas fa-reply"></i> Reply</a>' + '<a onclick="ThreadManager.load().messageReactions(\'' + data.id + '\'); return false;" class="dropdown-item" href="#"><i class="fas fa-grin-tongue"></i> View Reactions</a>' + (ThreadManager.state().thread_admin ? '<a onclick="ThreadManager.archive().Message({id : \'' + data.id + '\'}); return false;" class="dropdown-item" href="#"><i class="fas fa-trash"></i> Delete</a>' : '') + '  </div>\n' + '</div>';
         }
-        return options;
+        return '';
       },
       my_message_options: function my_message_options(data, grouped) {
         var options = '';
