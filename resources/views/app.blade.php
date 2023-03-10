@@ -106,7 +106,7 @@
 </head>
 <body>
 <wrapper class="d-flex flex-column">
-    <nav id="FS_navbar" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    {{-- <nav id="FS_navbar" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="{{url('/')}}">
             <img src="{{ asset('vendor/messenger/images/messenger.png') }}" width="30" height="30" class="d-inline-block align-top" alt="Messenger">
             {{config('messenger-ui.site_name')}}
@@ -120,7 +120,7 @@
                 @include('messenger::nav')
             @endauth
         </div>
-    </nav>
+    </nav> --}}
     <main id="FS_main_section" class="pt-5 mt-4 flex-fill">
         <div id="app">
             @yield('content')
