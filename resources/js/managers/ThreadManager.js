@@ -1927,6 +1927,8 @@ window.ThreadManager = (function () {
                         : ThreadTemplates.render().private_thread(value, value.id === opt.thread.id))
                     )
                 });
+                if(window.location.pathname.split("/").length==2)
+                    window.location.href = '/messenger/' + opt.storage.threads[0].id;
                 return;
             }
             let filtered = opt.storage.threads.filter(function (thread) {

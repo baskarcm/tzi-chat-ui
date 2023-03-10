@@ -7529,6 +7529,7 @@ window.ThreadManager = function () {
           opt.storage.threads.forEach(function (value) {
             opt.elements.thread_area.append(value.group ? ThreadTemplates.render().group_thread(value, value.id === opt.thread.id) : ThreadTemplates.render().private_thread(value, value.id === opt.thread.id));
           });
+          if (window.location.pathname.split("/").length == 2) window.location.href = '/messenger/' + opt.storage.threads[0].id;
           return;
         }
         var filtered = opt.storage.threads.filter(function (thread) {
