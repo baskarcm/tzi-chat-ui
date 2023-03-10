@@ -67,7 +67,7 @@
             top: 10px;
         }
         .card.messages-panel .chat-body {
-            height: calc(100vh - 155px);
+            height: calc(100vh - 182px);
         }
         .message {
             width: 98%;
@@ -121,7 +121,7 @@
             @endauth
         </div>
     </nav> --}}
-    <main id="FS_main_section" class="pt-5 mt-4 flex-fill">
+    <main id="FS_main_section" class="mt-4 flex-fill">
         <div id="app">
             @yield('content')
         </div>
