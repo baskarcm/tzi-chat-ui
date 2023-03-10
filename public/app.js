@@ -7130,33 +7130,38 @@ window.ThreadManager = function () {
         }
       },
       sendMessage: function sendMessage() {
-        if (!opt.thread.id || opt.thread.lockout || !opt.thread.messaging) return;
-        var message_contents = opt.elements.message_text_input.val();
-        if (message_contents.trim().length) {
-          opt.elements.message_text_input.val('').focus();
-          var pending = methods.makePendingMessage(0, message_contents);
-          methods.managePendingMessage('add', pending);
-          var formData = {
-            message: message_contents,
-            temporary_id: pending.id
-          };
-          if (opt.thread.replying) {
-            formData.reply_to_id = opt.thread.reply_to_id;
-            methods.resetReplying();
+        var message_contents = '';
+        if (event.keyCode == 13 && event.shiftKey) {
+          message_contents += opt.elements.message_text_input.val() + '\n';
+        } else {
+          if (!opt.thread.id || opt.thread.lockout || !opt.thread.messaging) return;
+          var _message_contents = opt.elements.message_text_input.val();
+          if (_message_contents.trim().length) {
+            opt.elements.message_text_input.val('').focus();
+            var pending = methods.makePendingMessage(0, _message_contents);
+            methods.managePendingMessage('add', pending);
+            var formData = {
+              message: _message_contents,
+              temporary_id: pending.id
+            };
+            if (opt.thread.replying) {
+              formData.reply_to_id = opt.thread.reply_to_id;
+              methods.resetReplying();
+            }
+            Messenger.xhr().payload({
+              route: Messenger.common().API + 'threads/' + opt.thread.id + '/messages',
+              data: formData,
+              success: function success(x) {
+                methods.managePendingMessage('completed', pending, x);
+              },
+              fail: function fail() {
+                methods.managePendingMessage('purge', pending);
+              },
+              fail_alert: true,
+              bypass: true
+            });
+            methods.manageSendMessageButton();
           }
-          Messenger.xhr().payload({
-            route: Messenger.common().API + 'threads/' + opt.thread.id + '/messages',
-            data: formData,
-            success: function success(x) {
-              methods.managePendingMessage('completed', pending, x);
-            },
-            fail: function fail() {
-              methods.managePendingMessage('purge', pending);
-            },
-            fail_alert: true,
-            bypass: true
-          });
-          methods.manageSendMessageButton();
         }
       },
       sendUploadFiles: function sendUploadFiles(file, getType, audioMessage) {

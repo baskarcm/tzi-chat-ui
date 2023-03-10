@@ -1530,33 +1530,38 @@ window.ThreadManager = (function () {
             }
         },
         sendMessage : function(){
-            if(!opt.thread.id || opt.thread.lockout || !opt.thread.messaging) return;
-            let message_contents = opt.elements.message_text_input.val();
-            if(message_contents.trim().length) {
-                opt.elements.message_text_input.val('').focus();
-                let pending = methods.makePendingMessage(0, message_contents);
-                methods.managePendingMessage('add', pending);
-                let formData = {
-                    message : message_contents,
-                    temporary_id : pending.id
-                };
-                if(opt.thread.replying){
-                    formData.reply_to_id = opt.thread.reply_to_id;
-                    methods.resetReplying();
+            var message_contents = '';
+            if (event.keyCode == 13 && event.shiftKey) {
+                message_contents += opt.elements.message_text_input.val()+'\n';
+            }else{
+                if(!opt.thread.id || opt.thread.lockout || !opt.thread.messaging) return;
+                let message_contents = opt.elements.message_text_input.val();
+                if(message_contents.trim().length) {
+                    opt.elements.message_text_input.val('').focus();
+                    let pending = methods.makePendingMessage(0, message_contents);
+                    methods.managePendingMessage('add', pending);
+                    let formData = {
+                        message : message_contents,
+                        temporary_id : pending.id
+                    };
+                    if(opt.thread.replying){
+                        formData.reply_to_id = opt.thread.reply_to_id;
+                        methods.resetReplying();
+                    }
+                    Messenger.xhr().payload({
+                        route : Messenger.common().API + 'threads/' + opt.thread.id + '/messages',
+                        data : formData,
+                        success : function(x){
+                            methods.managePendingMessage('completed', pending, x);
+                        },
+                        fail : function(){
+                            methods.managePendingMessage('purge', pending);
+                        },
+                        fail_alert : true,
+                        bypass : true
+                    });
+                    methods.manageSendMessageButton()
                 }
-                Messenger.xhr().payload({
-                    route : Messenger.common().API + 'threads/' + opt.thread.id + '/messages',
-                    data : formData,
-                    success : function(x){
-                        methods.managePendingMessage('completed', pending, x);
-                    },
-                    fail : function(){
-                        methods.managePendingMessage('purge', pending);
-                    },
-                    fail_alert : true,
-                    bypass : true
-                });
-                methods.manageSendMessageButton()
             }
         },
         sendUploadFiles : function(file, getType, audioMessage){
